@@ -1,6 +1,19 @@
+'use client'
+
+import { setAddress, setName } from "@/store/userSlice";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Home() {
+  let name = "farindra"
+  let address = "Miklajung"
+
+  const dispatch = useDispatch()
+  const data = useSelector((store:any) => store.user)
+  console.log(`============>${data.Username, data.address}`)
+  dispatch(setName(name))
+  dispatch(setAddress(address))
+  setName(name)
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
@@ -22,7 +35,7 @@ export default function Home() {
             .
           </li>
           <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
+            Save and see your changes {data.Username}
           </li>
         </ol>
 
